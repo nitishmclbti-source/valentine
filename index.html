@@ -24,7 +24,7 @@
       max-width: 400px;
     }
     h1 { font-size: 26px; }
-    p { font-size: 16px; }
+    p { font-size: 16px; margin: 10px 0; }
     button {
       padding: 10px 20px;
       border: none;
@@ -34,7 +34,7 @@
       cursor: pointer;
     }
     #yes { background: #ff4d6d; color: white; }
-    #no { background: #fff; color: #ff4d6d; position: absolute; }
+    #no { background: #fff; color: #ff4d6d; position: relative; }
   </style>
 </head>
 <body>
@@ -48,19 +48,19 @@
     but I feel something very real for you.
   </p>
   <h2>Will you be my Valentine? 💖</h2>
-  <button id="yes" onclick="yesClicked()">Yes 😍</button>
-  <button id="no" onmouseover="moveNo()">No 🙄</button>
+  <button id="yes1" onclick="yesClicked()">Yes 😍</button>
+  <button id="no1" onclick="noClicked(1)" onmouseover="moveNo(1)">No 🙄</button>
 </div>
 
 <div class="box" id="page2" style="display:none;">
   <h1>Please yaar 🥺</h1>
-  <p>
+  <p id="sms1">
     Itni jaldi No bol diya?<br>
     Pinky dil se keh raha hai…<br>
     thoda sa soch lo na 💔
   </p>
-  <button id="yes" onclick="yesClicked()">Yes ❤️</button>
-  <button id="no" onmouseover="moveNo()">No 😐</button>
+  <button id="yes2" onclick="yesClicked()">Yes ❤️</button>
+  <button id="no2" onclick="noClicked(2)" onmouseover="moveNo(2)">No 😐</button>
 </div>
 
 <div class="box" id="page3" style="display:none;">
@@ -77,12 +77,30 @@
 </div>
 
 <script>
-  function moveNo() {
-    const no = document.getElementById("no");
-    no.style.top = Math.random() * 80 + "%";
-    no.style.left = Math.random() * 80 + "%";
+  let step = 1; // step sequence
+
+  function moveNo(n) {
+    if(step === 2) { // Second NO press will move button
+      const noBtn = document.getElementById("no2");
+      noBtn.style.top = Math.random() * 80 + "%";
+      noBtn.style.left = Math.random() * 80 + "%";
+    }
   }
+
+  function noClicked(n) {
+    if(n === 1 && step === 1) {
+      // First NO press → show SMS page
+      document.getElementById("page1").style.display = "none";
+      document.getElementById("page2").style.display = "block";
+      step = 2;
+    } else if(n === 2 && step === 2) {
+      // Second NO press → button move
+      moveNo(2);
+    }
+  }
+
   function yesClicked() {
+    // YES leads to final page
     document.getElementById("page1").style.display = "none";
     document.getElementById("page2").style.display = "none";
     document.getElementById("page3").style.display = "block";
