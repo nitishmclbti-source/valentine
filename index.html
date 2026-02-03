@@ -32,9 +32,10 @@
       font-size: 16px;
       margin: 10px;
       cursor: pointer;
+      position: relative;
     }
     #yes { background: #ff4d6d; color: white; }
-    #no { background: #fff; color: #ff4d6d; position: relative; }
+    #no { background: #fff; color: #ff4d6d; }
   </style>
 </head>
 <body>
@@ -49,7 +50,7 @@
   </p>
   <h2>Will you be my Valentine? 💖</h2>
   <button id="yes1" onclick="yesClicked()">Yes 😍</button>
-  <button id="no1" onclick="noClicked(1)" onmouseover="moveNo(1)">No 🙄</button>
+  <button id="no1" onclick="noClicked(1)">No 🙄</button>
 </div>
 
 <div class="box" id="page2" style="display:none;">
@@ -60,7 +61,7 @@
     thoda sa soch lo na 💔
   </p>
   <button id="yes2" onclick="yesClicked()">Yes ❤️</button>
-  <button id="no2" onclick="noClicked(2)" onmouseover="moveNo(2)">No 😐</button>
+  <button id="no2" onclick="noClicked(2)">No 😐</button>
 </div>
 
 <div class="box" id="page3" style="display:none;">
@@ -77,34 +78,28 @@
 </div>
 
 <script>
-  let step = 1; // step sequence
+let step = 1; // Step sequence tracker
 
-  function moveNo(n) {
-    if(step === 2) { // Second NO press will move button
-      const noBtn = document.getElementById("no2");
-      noBtn.style.top = Math.random() * 80 + "%";
-      noBtn.style.left = Math.random() * 80 + "%";
-    }
-  }
-
-  function noClicked(n) {
-    if(n === 1 && step === 1) {
-      // First NO press → show SMS page
-      document.getElementById("page1").style.display = "none";
-      document.getElementById("page2").style.display = "block";
-      step = 2;
-    } else if(n === 2 && step === 2) {
-      // Second NO press → button move
-      moveNo(2);
-    }
-  }
-
-  function yesClicked() {
-    // YES leads to final page
+function noClicked(n) {
+  if(step === 1 && n===1){
+    // First NO click
     document.getElementById("page1").style.display = "none";
-    document.getElementById("page2").style.display = "none";
-    document.getElementById("page3").style.display = "block";
+    document.getElementById("page2").style.display = "block";
+    step = 2;
+  } else if(step === 2 && n===2){
+    // Second NO click → button move
+    const noBtn = document.getElementById("no2");
+    noBtn.style.top = Math.random() * 80 + "%";
+    noBtn.style.left = Math.random() * 80 + "%";
   }
+}
+
+function yesClicked(){
+  // Any YES click → final page
+  document.getElementById("page1").style.display = "none";
+  document.getElementById("page2").style.display = "none";
+  document.getElementById("page3").style.display = "block";
+}
 </script>
 
 </body>
