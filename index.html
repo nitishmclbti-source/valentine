@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For Chutki ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(#ff9a9e, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      color: #fff;
+    }
+    .box {
+      background: rgba(0,0,0,0.3);
+      padding: 20px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 400px;
+    }
+    h1 { font-size: 26px; }
+    p { font-size: 16px; }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      font-size: 16px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    #yes { background: #ff4d6d; color: white; }
+    #no { background: #fff; color: #ff4d6d; position: absolute; }
+  </style>
+</head>
+<body>
+
+<div class="box" id="page1">
+  <h1>Chutki ❤️</h1>
+  <p>
+    Tumhari ek smile<br>
+    meri poori duniya badal deti hai.<br><br>
+    I don’t know how to explain this,<br>
+    but I feel something very real for you.
+  </p>
+  <h2>Will you be my Valentine? 💖</h2>
+  <button id="yes" onclick="yesClicked()">Yes 😍</button>
+  <button id="no" onmouseover="moveNo()">No 🙄</button>
+</div>
+
+<div class="box" id="page2" style="display:none;">
+  <h1>Please yaar 🥺</h1>
+  <p>
+    Itni jaldi No bol diya?<br>
+    Pinky dil se keh raha hai…<br>
+    thoda sa soch lo na 💔
+  </p>
+  <button id="yes" onclick="yesClicked()">Yes ❤️</button>
+  <button id="no" onmouseover="moveNo()">No 😐</button>
+</div>
+
+<div class="box" id="page3" style="display:none;">
+  <h1>Finally… YES ❤️</h1>
+  <p>
+    Chutki,<br><br>
+    Tum sirf meri Valentine nahi ho,<br>
+    tum meri aadat ho.<br><br>
+    I miss you every day.<br>
+    I love you more than words can say.<br><br>
+    – Pinky 💖
+  </p>
+  <p>(Yahan baad me photos add kar sakte ho 📸)</p>
+</div>
+
+<script>
+  function moveNo() {
+    const no = document.getElementById("no");
+    no.style.top = Math.random() * 80 + "%";
+    no.style.left = Math.random() * 80 + "%";
+  }
+  function yesClicked() {
+    document.getElementById("page1").style.display = "none";
+    document.getElementById("page2").style.display = "none";
+    document.getElementById("page3").style.display = "block";
+  }
+</script>
+
+</body>
+</html>
